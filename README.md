@@ -21,6 +21,53 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+## Setup Instructions
+
+Follow these steps to set up the project on your local machine:
+
+1. **Clone the repository:**
+    ```sh
+    git clone git@github.com:riqfams/livewire-project.git
+    cd livewire-project
+    ```
+
+2. **Install dependencies:**
+    ```sh
+    composer install
+    npm install
+    npm run dev
+    ```
+
+3. **Copy the [.env.example](http://_vscodecontentref_/1) file to [.env](http://_vscodecontentref_/2):**
+    ```sh
+    cp .env.example .env
+    ```
+
+4. **Generate an application key:**
+    ```sh
+    php artisan key:generate
+    ```
+
+5. **Set up your database:**
+    - Update your `.env` file with your database credentials.
+    - Run the migrations:
+        ```sh
+        php artisan migrate
+        ```
+
+6. **Seed the database (optional):**
+    ```sh
+    php artisan db:seed
+    ```
+
+7. **Serve the application:**
+    ```sh
+    php artisan serve
+    ```
+
+8. **Access the application:**
+    Open your browser and go to `http://localhost:8000`.
+
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
