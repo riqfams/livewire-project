@@ -1,0 +1,58 @@
+.history-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 300px; /* Adjust the width as needed */
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+.history-sidebar.hidden {
+    transform: translateX(100%);
+}
+
+.history-sidebar.visible {
+    transform: translateX(0);
+}
+
+.history-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    max-height: 100%;
+}
+
+.history-footer {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 1rem;
+}
+
+footer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}
+
+.no-border {
+    border: none;
+}
+
+.no-border:focus {
+    outline: none;
+    border: none;
+}
+
+.toggle-btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #3182ce;
+}
