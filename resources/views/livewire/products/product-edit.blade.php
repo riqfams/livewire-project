@@ -1,5 +1,14 @@
 <div>
-        <form class="max-w-2xl mx-auto">
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                <div class="p-6 lg:p-8 bg-white border-b border-gray-200">
+                
+
+                <h1 class="mt-0 text-2xl font-medium text-gray-900 block h-12 w-auto">
+                    Edit
+                </h1>
+    <form class="max-w-2xl mx-auto">
             <div class="col-span-6 sm:col-span-4 ">
                 <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
                 <input type="text" wire:model="name" id="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
@@ -21,9 +30,9 @@
             <div class="col-span-6 sm:col-span-4">
                 <label for="image" class="block text-sm font-medium text-gray-700">Image URL</label>
                 <input type="file" wire:model="image" id="image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                <img style="width: 20rem" class="my-5" src="{{ asset('storage/' . $this->image)  }}" alt="product_image"/>
                 @error('image') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
-            
             <div class="flex justify-between pt-5">
                 <x-secondary-button class="ml-2">
                     <a href="{{ route('products.index') }}">
@@ -42,5 +51,8 @@
                 
             </div>
         </form>
+                    </div>
+            </div>
+        </div>
     </div>
 

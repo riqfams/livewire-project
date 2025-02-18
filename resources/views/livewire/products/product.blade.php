@@ -45,7 +45,9 @@
                     {{ $product->description }}
                 </td>
                 <td class="px-6 py-4 overflow-hidden whitespace-nowrap text-sm font-medium text-gray-500">
-                    {{ $product->image }}
+                    @if ($product->image)
+                    <img style="width: 10rem" class="my-5" src="{{ asset('storage/' . $product->image)  }}" alt="image"/>
+                    @endif
                 </td>
                 {{-- <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-500">
                     {{ $product->created_at }}
