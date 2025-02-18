@@ -30,7 +30,7 @@ class ProductEdit extends Component
             'name' => 'required|string',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:1024',
+            'image' => 'nullable|image|max:2048',
         ];
 
         

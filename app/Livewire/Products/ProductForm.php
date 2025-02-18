@@ -12,10 +12,6 @@ class ProductForm extends Component
     public $name, $price, $description, $image;
     public $productId;
 
-    // public function mount($productId)
-    // {
-    //     dd($productId);
-    // }
 
     public function store()
     {
@@ -23,7 +19,7 @@ class ProductForm extends Component
             'name' => 'required|string',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|max:1024',
+            'image' => 'nullable|image|max:2048',
         ];
 
         $validated = $this->validate($rules);

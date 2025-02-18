@@ -30,7 +30,9 @@
             <div class="col-span-6 sm:col-span-4">
                 <label for="image" class="block text-sm font-medium text-gray-700">Image URL</label>
                 <input type="file" wire:model="image" id="image" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                {{-- @if ($this->image)
                 <img style="width: 20rem" class="my-5" src="{{ asset('storage/' . $this->image)  }}" alt="product_image"/>
+                @endif --}}
                 @error('image') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
             </div>
             <div class="flex justify-between pt-5">
@@ -51,7 +53,7 @@
                 
             </div>
         </form>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
