@@ -14,6 +14,9 @@ Route::middleware([
 
     Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
     Route::get('/profile', function () {return view('profile.show');})->name('profile.show');
-
+    Route::get('/products', function () {return view('products.index');})->name('products.index');
+    Route::get('/products/create', function () {return view('products.product-form');})->name('products.create');
+    Route::get('/products/{productId}/edit', function () {return view('products.product-edit');})->name('products.edit');
+    
     
 });
