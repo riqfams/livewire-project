@@ -79,7 +79,7 @@
                         <p class="mt-2 font-normal text-sm leading-6 text-gray-500">White perfume</p>
                     </div>
                 </a>
-                <a href="javascript:;"
+                {{-- <a href="javascript:;"
                     class="mx-auto sm:ml-0 group cursor-pointer lg:mx-auto  transition-all duration-500">
                     <div class="">
                         <img src="https://pagedone.io/asset/uploads/1700726207.png" alt="perfume bottle image"
@@ -110,7 +110,26 @@
                         </div>
                         <p class="mt-2 font-normal text-sm leading-6 text-gray-500">White perfume</p>
                     </div>
+                </a> --}}
+                @foreach ($products as $product)
+                    <a href="javascript:;"
+                    class="mx-auto sm:ml-0 group cursor-pointer lg:mx-auto  transition-all duration-500"
+                    wire:click="selectProduct({{ $product->id }})">
+                    <div class="">
+                        <img src="{{ asset('storage/' . $product->image)  }}" alt="perfume bottle image"
+                            class="w-full aspect-square rounded-2xl object-cover">
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex items-center justify-between">
+                            <h6
+                                class="font-semibold text-xl leading-8 text-black transition-all duration-500 group-hover:text-indigo-600">
+                                {{ $product->name }}</h6>
+                            <h6 class="font-semibold text-xl leading-8 text-indigo-600">${{ $product->price }}</h6>
+                        </div>
+                        <p class="mt-2 font-normal text-sm leading-6 text-gray-500">{{ $product->description }}</p>
+                    </div>
                 </a>
+                @endforeach
             </div>
         </div>
     </section>

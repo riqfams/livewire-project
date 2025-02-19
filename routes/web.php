@@ -3,6 +3,7 @@
 
 use App\Livewire\OpenAI\Index as OpenAIIndex;
 use App\Livewire\Stripe\Index as StripeIndex;
+use App\Livewire\Stripe\Show as StripeShow;
 
 use App\Livewire\Products\ProductEdit;
 use App\Livewire\Products\ProductForm;
@@ -29,6 +30,6 @@ Route::middleware([
     Route::get('/products/{productId}/edit', ProductEdit::class)->name('products.edit');
     Route::get('/openai', OpenAIIndex::class)->name('openai.index');
     Route::get('/stripe', StripeIndex::class)->name('stripe.index');
-
+    Route::get('/stripe/{productId}/detail', StripeShow::class)->name('stripe.show');
 
 });
