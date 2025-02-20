@@ -63,12 +63,8 @@ class Show extends Component
                 'quantity' => $this->quantity,
             ]],
             'mode' => 'payment',
-            'success_url' => route('stripe.index'),
+            'success_url' => route('transactions.store') . "?session_id={CHECKOUT_SESSION_ID}&product_id={$this->productId}&quantity={$this->quantity}",
             'cancel_url' => route('stripe.show', $this->productId),
-            'metadata' => [
-            'product_name' => $this->name,
-            'description' => "Purchase of {$this->name} - $ {$this->price}"
-            ]
         ]);
 
         return redirect($checkoutSession->url);

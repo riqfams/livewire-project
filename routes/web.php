@@ -1,9 +1,12 @@
 <?php
 
-
+use App\Http\Controllers\TransactionsController;
 use App\Livewire\OpenAI\Index as OpenAIIndex;
 use App\Livewire\Stripe\Index as StripeIndex;
 use App\Livewire\Stripe\Show as StripeShow;
+
+use App\Livewire\Transaction\Index as TransactionsIndex;
+use App\Livewire\Transaction\Complete as TransactionsComplete;
 
 use App\Livewire\Products\ProductEdit;
 use App\Livewire\Products\ProductForm;
@@ -31,5 +34,8 @@ Route::middleware([
     Route::get('/openai', OpenAIIndex::class)->name('openai.index');
     Route::get('/stripe', StripeIndex::class)->name('stripe.index');
     Route::get('/stripe/{productId}/detail', StripeShow::class)->name('stripe.show');
+    Route::get('/transactions', TransactionsIndex::class)->name('transactions.index');
+    Route::get('/transactions/{id}/detail', TransactionsComplete::class)->name('transactions.detail');
+    Route::get('/transactions/complete', [TransactionsController::class, 'store'])->name('transactions.store');
 
 });

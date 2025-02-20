@@ -6,7 +6,7 @@
         </h2>
 
     </x-slot>
-    <section class="py-24">
+    <section class="py-12">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <h2 class="font-manrope font-bold text-4xl text-black mb-8 max-lg:text-center">
                 Product list
