@@ -15,6 +15,7 @@ class Show extends Component
     public $description;
     public $price;
     public $image;
+    public $quantity = 1;
 
     public function mount($productId)
     {
@@ -24,6 +25,21 @@ class Show extends Component
         $this->description = $product->description;
         $this->price = $product->price;
         $this->image = $product->image;
+        $this->quantity = 1;
+    }
+
+    public function increaseQuantity()
+    {
+        if ($this->quantity < 100) {
+            $this->quantity++;
+        }
+    }
+
+    public function decreaseQuantity()
+    {
+        if ($this->quantity > 1) {
+            $this->quantity--;
+        }
     }
 
     public function checkoutProduct()
@@ -44,7 +60,7 @@ class Show extends Component
                     ],
                     'unit_amount' => $this->price * 100,
                 ],
-                'quantity' => 1,
+                'quantity' => $this->quantity,
             ]],
             'mode' => 'payment',
             'success_url' => route('stripe.index'),

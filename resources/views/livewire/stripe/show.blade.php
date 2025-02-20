@@ -25,6 +25,19 @@
                     <p class="text-gray-600 mt-2">{{ $description }}</p>
                     <h4 class="text-xl font-bold text-indigo-600 mt-4">${{ $price }}</h4>
                     <div class="mt-6">
+                        <div class="relative flex items-center max-w-[8rem]">
+                            <button wire:click="decreaseQuantity" type="button" id="decrement-button"  class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
+                                <svg class="w-3 h-3 text-gray-900 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                </svg>
+                            </button>
+                            <p min="1" max="100" type="number" id="quantity-input" class="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5  placeholder="Quantity" required >{{ $quantity }} </p>
+                            <button wire:click="increaseQuantity" type="button" id="increment-button" class="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                <svg class="w-3 h-3 text-gray-900 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                </svg>
+                            </button>
+                        </div>
                         <h4 class="text-lg font-semibold mb-2">Payment Details</h4>
                         <button wire:click="checkoutProduct" class="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-md" type="button">
                             Pay Now</button>
