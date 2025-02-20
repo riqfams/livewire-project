@@ -4,35 +4,58 @@ namespace App\Livewire\Stripe;
 
 use App\Models\Product;
 use Livewire\Component;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 
 class Show extends Component
 {
 
-    public $product;
-    public $stripeToken;
+    public $productId;
+    public $name;
+    public $description;
+    public $price;
+    public $image;
 
     public function mount($productId)
     {
-        $this->product = Product::findOrFail($productId);
+        $product = Product::findOrFail($productId);
+        $this->productId = $product->id;
+        $this->name = $product->name;
+        $this->description = $product->description;
+        $this->price = $product->price;
+        $this->image = $product->image;
     }
 
-    public function processPayment()
+    public function checkoutProduct()
     {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
 
-        $stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
-        $price = $this->product->price;
-        $token = $this->stripeToken;
-        $description = $this->product->name;
+        // $imageUrl = asset('storage/' . $this->image);
 
-
-        $charge = $stripe->charges->create([
-        'amount' => $price * 100,
-        'currency' => 'usd',
-        'source' => $token,
-        'description' => $description
+        $checkoutSession = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => $this->name,
+                        // 'images' => [$imageUrl],
+                        'description' => $this->description
+                    ],
+                    'unit_amount' => $this->price * 100,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('stripe.index'),
+            'cancel_url' => route('stripe.show', $this->productId),
+            'metadata' => [
+            'product_name' => $this->name,
+            'description' => "Purchase of {$this->name} - $ {$this->price}"
+            ]
         ]);
-        // dd($charge);
-        return back()->with("success", "Your transaction is success");
+
+        return redirect($checkoutSession->url);
     }
 
     public function render()

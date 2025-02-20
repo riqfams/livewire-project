@@ -19,21 +19,15 @@
     <section class="py-10">
         <div class="max-w-4xl mx-auto bg-white p-6 shadow-md rounded-lg">
             <div class="flex gap-6">
-                <img src="{{ asset('storage/' . $product->image) }}" class="w-1/3 rounded-lg" alt="{{ $product->name }}">
+                <img src="{{ asset('storage/' . $image) }}" class="w-1/3 rounded-lg" alt="{{ $name }}">
                 <div class="flex-1">
-                    <h3 class="text-2xl font-semibold">{{ $product->name }}</h3>
-                    <p class="text-gray-600 mt-2">{{ $product->description }}</p>
-                    <h4 class="text-xl font-bold text-indigo-600 mt-4">${{ $product->price }}</h4>
+                    <h3 class="text-2xl font-semibold">{{ $name }}</h3>
+                    <p class="text-gray-600 mt-2">{{ $description }}</p>
+                    <h4 class="text-xl font-bold text-indigo-600 mt-4">${{ $price }}</h4>
                     <div class="mt-6">
                         <h4 class="text-lg font-semibold mb-2">Payment Details</h4>
-                        <form wire:submit.prevent="processPayment" id="stripe-form">
-                            @csrf
-                            {{-- <input type="hidden" name="price" value="{{ $product->price }}"> --}}
-                            <input type="hidden" name="stripeToken" id="stripe-token" wire:model="token">
-        
-                            <div id="card-element" class="border p-3 rounded-md"></div>
-                            <button class="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-md" type="button" onclick="createToken()">Pay Now</button>
-                        </form>
+                        <button wire:click="checkoutProduct" class="mt-4 px-6 py-2 bg-indigo-600 text-white rounded-md" type="button">
+                            Pay Now</button>
                     </div>
                 </div>
             </div>
@@ -41,32 +35,4 @@
         </div>
     </section>
 </div>
-
-<script src="https://js.stripe.com/v3/"></script>
-<script type="text/javascript">
-    var stripe = Stripe('{{ env("STRIPE_KEY") }}');
-    var elements = stripe.elements();
-    var cardElement = elements.create('card');
-    cardElement.mount('#card-element');
-
-    // function createToken() {
-    //     stripe.createToken(cardElement).then(function(result) {
-    //         if (result.token) {
-    //             document.getElementById("stripe-token").value = result.token.id;
-    //             document.getElementById("stripe-form").submit();
-    //         }
-    //     });
-    // }
-
-    function createToken() {
-        stripe.createToken(cardElement).then(function(result) {
-            if (result.token) {
-                @this.set('stripeToken', result.token.id);
-                @this.call('processPayment');
-            } else {
-                alert(result.error.message);
-            }
-        });
-    }
-</script>
 
